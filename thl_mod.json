@@ -1,0 +1,41 @@
+{
+    "tasks": [
+        {
+            "httpTask": {
+                "url": "https://mainnet.aptoslabs.com/v1/accounts/48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af/resource/0x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::weighted_pool::WeightedPool%3C0x6f986d146e4a90b828d8c12c14b6f4e003fdff11a8eecceceb63744363eaac01::mod_coin::MOD,%200x7fd500c11216f0fe3095d0c4b8aa4d64a4e2e04f83758462f2b127255643615::thl_coin::THL,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::weighted_pool::Weight_20,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::weighted_pool::Weight_80,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null%3E",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "jsonParseTask": {
+                "path": "data.asset_0.value",
+                "aggregationMethod": "NONE"
+            }
+        },
+        {
+            "multiplyTask": {
+                "value": "4"
+            }
+        },
+        {
+            "divideTask": {
+                "job": {
+                    "tasks": [
+                        {
+                            "httpTask": {
+                                "url": "https://mainnet.aptoslabs.com/v1/accounts/48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af/resource/0x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::weighted_pool::WeightedPool%3C0x6f986d146e4a90b828d8c12c14b6f4e003fdff11a8eecceceb63744363eaac01::mod_coin::MOD,%200x7fd500c11216f0fe3095d0c4b8aa4d64a4e2e04f83758462f2b127255643615::thl_coin::THL,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::weighted_pool::Weight_20,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::weighted_pool::Weight_80,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null,%200x48271d39d0b05bd6efca2278f22277d6fcc375504f9839fd73f74ace240861af::base_pool::Null%3E",
+                                "method": "METHOD_GET"
+                            }
+                        },
+                        {
+                            "jsonParseTask": {
+                                "path": "data.asset_1.value",
+                                "aggregationMethod": "NONE"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
