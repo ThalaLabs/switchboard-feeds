@@ -7,9 +7,40 @@
             }
         },
         {
-            "jsonParseTask": {
-                "path": "data.asset_0.value",
-                "aggregationMethod": "NONE"
+            "cacheTask": {
+                "cacheItems": [
+                    {
+                        "variableName": "modAmount",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "data.asset_0.value",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "variableName": "thlAmount",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "data.asset_1.value",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "valueTask": {
+                "big": "${modAmount}"
             }
         },
         {
@@ -19,23 +50,8 @@
         },
         {
             "divideTask": {
-                "job": {
-                    "tasks": [
-                        {
-                            "httpTask": {
-                                "url": "http://tinyurl.com/3ktrt8c9",
-                                "method": "METHOD_GET"
-                            }
-                        },
-                        {
-                            "jsonParseTask": {
-                                "path": "data.asset_1.value",
-                                "aggregationMethod": "NONE"
-                            }
-                        }
-                    ]
+                "big": "${thlAmount}"
                 }
-            }
         }
     ]
 }
