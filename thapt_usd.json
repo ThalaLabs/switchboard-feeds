@@ -1,0 +1,16 @@
+{
+    "tasks": [
+        {
+            "httpTask": {
+                "url": "https://app.thala.fi/api/pyth-data-publisher/thapt-usd",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "jsonParseTask": {
+                "path": "data.price",
+                "aggregationMethod": "NONE"
+            }
+        }
+    ]
+}
