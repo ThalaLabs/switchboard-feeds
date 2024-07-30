@@ -2,7 +2,7 @@
     "tasks": [
         {
             "httpTask": {
-                "url": "https://api.mainnet.aptoslabs.com/v1/accounts/0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa/resources",
+                "url": "https://api.mainnet.aptoslabs.com/v1/accounts/0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa/resource/0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa::swap::TokenPairReserve%3C0x1::aptos_coin::AptosCoin,0xe4ccb6d39136469f376242c31b34d10515c8eaaa38092f804db8e08a8f53c5b2::assets_v1::EchoCoin002%3E",
                 "method": "METHOD_GET"
             }
         },
@@ -10,43 +10,7 @@
             "cacheTask": {
                 "cacheItems": [
                     {
-                        "variableName": "gui-aptObject",
-                        "job": {
-                            "tasks": [
-                                {
-                                    "regexExtractTask": {
-                                        "pattern": "\\{.*?\"type\":\\s*?\"0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa::swap::TokenPairReserve<0x1::aptos_coin::AptosCoin,\\s*?0xe4ccb6d39136469f376242c31b34d10515c8eaaa38092f804db8e08a8f53c5b2::assets_v1::EchoCoin002>\".*?\\}"
-                                    }
-                                } 
-                            ]
-                        }
-                    },
-                    {
-                        "variableName": "apt-usdObject",
-                        "job": {
-                            "tasks": [
-                                {
-                                    "regexExtractTask": {
-                                        "pattern": "\\{.*?\"type\":\\s*?\"0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa::swap::TokenPairReserve<0x1::aptos_coin::AptosCoin,\\s*?0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC>\".*?\\}"
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "valueTask": {
-                "big": "${guiinuReserve}"
-            }
-        },
-        // TODO: load in gui-aptObject        
-        {
-            "cacheTask": {
-                "cacheItems": [
-                    {
-                        "variableName": "aptGUIReserve",
+                        "variableName": "guiAPTReserve",
                         "job": {
                             "tasks": [
                                 {
@@ -54,12 +18,12 @@
                                         "path": "data.reserve_x",
                                         "aggregationMethod": "NONE"
                                     }
-                                }
+                                } 
                             ]
                         }
                     },
                     {
-                        "variableName": "guiinuReserve",
+                        "variableName": "guiReserve",
                         "job": {
                             "tasks": [
                                 {
@@ -67,14 +31,19 @@
                                         "path": "data.reserve_y",
                                         "aggregationMethod": "NONE"
                                     }
-                                }
+                                } 
                             ]
                         }
                     }
                 ]
             }
         },
-        // TODO: load in apt-usdObject        
+        {
+            "httpTask": {
+                "url": "https://api.mainnet.aptoslabs.com/v1/accounts/0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa/resource/0xc7efb4076dbe143cbcd98cfaaa929ecfc8f299203dfff63b95ccb6bfe19850fa::swap::TokenPairReserve%3C0x1::aptos_coin::AptosCoin,0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC%3E",
+                "method": "METHOD_GET"
+            }
+        },
         {
             "cacheTask": {
                 "cacheItems": [
@@ -87,7 +56,7 @@
                                         "path": "data.reserve_x",
                                         "aggregationMethod": "NONE"
                                     }
-                                }
+                                } 
                             ]
                         }
                     },
@@ -100,7 +69,7 @@
                                         "path": "data.reserve_y",
                                         "aggregationMethod": "NONE"
                                     }
-                                }
+                                } 
                             ]
                         }
                     }
@@ -109,12 +78,12 @@
         },
         {
             "valueTask": {
-                "big": "${aptGUIReserve}"
+                "big": "${guiAPTReserve}"
             }
         },
         {
             "divideTask": {
-                "big": "${guiinuReserve}"
+                "big": "${guiReserve}"
             }
         },
         {
