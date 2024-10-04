@@ -1,0 +1,105 @@
+{
+    "tasks": [
+        {
+            "httpTask": {
+                "url": "https://api.mainnet.aptoslabs.com/v1/accounts/0x61d2c22a6cb7831bee0f48363b0eec92369357aece0d1142062f7d5d85c7bef8/resource/0x163df34fccbf003ce219d3f1d9e70d140b60622cb9dd47599c25fb2f797ba6e::liquidity_pool::LiquidityPool%3C0x53a30a6e5936c0a4c5140daed34de39d17ca7fcae08f947c02e979cef98a3719::coin::LSD,0x1::aptos_coin::AptosCoin,0x163df34fccbf003ce219d3f1d9e70d140b60622cb9dd47599c25fb2f797ba6e::curves::Uncorrelated%3E",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "cacheTask": {
+                "cacheItems": [
+                    {
+                        "variableName": "lsdReserve",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "data.coin_x_reserve.value",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                } 
+                            ]
+                        }
+                    },
+                    {
+                        "variableName": "aptLSDReserve",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "data.coin_y_reserve.value",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                } 
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "httpTask": {
+                "url": "https://api.mainnet.aptoslabs.com/v1/accounts/0x61d2c22a6cb7831bee0f48363b0eec92369357aece0d1142062f7d5d85c7bef8/resource/0x163df34fccbf003ce219d3f1d9e70d140b60622cb9dd47599c25fb2f797ba6e::liquidity_pool::LiquidityPool%3C0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC,0x1::aptos_coin::AptosCoin,0x163df34fccbf003ce219d3f1d9e70d140b60622cb9dd47599c25fb2f797ba6e::curves::Uncorrelated%3E",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "cacheTask": {
+                "cacheItems": [
+                    {
+                        "variableName": "usdcReserve",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "data.coin_x_reserve.value",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                } ,
+                                {
+                                    "multiplyTask": {
+                                        "big": "100"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "variableName": "aptUSDCReserve",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "data.coin_y_reserve.value",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "valueTask": {
+                "big": "${aptLSDReserve}"
+            }
+        },
+        {
+            "divideTask": {
+                "big": "${lsdReserve}"
+            }
+        },
+        {
+            "multiplyTask": {
+                "big": "${usdcReserve}"
+            }
+        },
+        {
+            "divideTask": {
+                "big": "${aptUSDCReserve}"
+            }
+        }
+    ]
+}
