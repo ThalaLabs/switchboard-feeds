@@ -1,0 +1,45 @@
+{
+    "tasks": [
+        {
+            "httpTask": {
+                "url": "https://hermes.pyth.network/v2/updates/price/latest?ids%5B%5D=0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "cacheTask": {
+                "cacheItems": [
+                    {
+                        "variableName": "BTCUSD",
+                        "job": {
+                            "tasks": [
+                                {
+                                    "jsonParseTask": {
+                                        "path": "parsed[0].price.price",
+                                        "aggregationMethod": "NONE"
+                                    }
+                                } 
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "httpTask": {
+                "url": "https://api.bitdrome.finance/data/relayer/gl-btc-price",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "multiplyTask": {
+                "big": "${BTCUSD}"
+            }
+        },
+        {
+            "divideTask": {
+                "big": "100000000"
+            }
+        }
+    ]
+}
