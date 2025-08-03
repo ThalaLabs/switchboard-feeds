@@ -1,0 +1,16 @@
+{
+    "tasks": [
+        {
+            "httpTask": {
+                "url": "https://app.thala.fi/api/reserve-oracle",
+                "method": "METHOD_GET"
+            }
+        },
+        {
+            "jsonParseTask": {
+                "path": "data",
+                "aggregationMethod": "NONE"
+            }
+        }
+    ]
+}
